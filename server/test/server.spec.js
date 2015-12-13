@@ -77,6 +77,22 @@ describe('App server', function () {
       });
     });
 
+    it('should return 200 when toggling existing light', function (done) {
+      request('http://localhost:4081/toggle/0', function (err, res, body) {
+        should.not.exist(err);
+        res.statusCode.should.equal(200);
+        done();
+      });
+    });
+
+    it('should return 400 when toggling non-existing light', function (done) {
+      request('http://localhost:4081/toggle/115', function (err, res, body) {
+        should.not.exist(err);
+        res.statusCode.should.equal(400);
+        done();
+      });
+    });
+
   });
 
 });
