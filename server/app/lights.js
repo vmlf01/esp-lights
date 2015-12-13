@@ -3,13 +3,8 @@ var lights = {};
 var lightsStatus = [];
 
 lights.init = function (numberOfLights, cb) {
-  lightsStatus = [numberOfLights];
-
-  for (var i = 0; i < numberOfLights; i++) {
-    lightsStatus[i] = false;
-  }
-
-  return cb(null, lightsStatus.slice());
+  lightsStatus = new Array(numberOfLights);
+  lights.reset(cb);
 };
 
 lights.toggle = function (lightIndex, cb) {
@@ -34,6 +29,14 @@ lights.getStatus = function (lightIndex, cb) {
     return cb(new Error('Invalid light index => ' + lightIndex), lightsStatus);
   }
 };
+
+lights.reset = function (cb) {
+  for (var i = 0; i < lightsStatus.length; i++) {
+    lightsStatus[i] = false;
+  }
+
+  return cb(null, lightsStatus.slice());
+}
 
 function isValidIndex (index) {
   return Number.isInteger(index) && index < lightsStatus.length;

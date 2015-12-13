@@ -64,6 +64,29 @@ describe('Lights', function () {
 
   });
 
+  describe('reset', function () {
+
+    beforeEach(function (done) {
+      lights.init(3, function () {
+        lights.toggle(2, done);
+      });
+    });
+
+    it('should reset all light status to off', function (done) {
+      lights.getStatus(2, function (err, status) {
+        status.should.be.true;
+
+        lights.reset(function (err, status) {
+          status.should.have.length(3);
+          status.should.all.equal(false);
+
+          done();
+        });
+      });
+    });
+
+  });
+
   describe('getStatus', function () {
 
     beforeEach(function (done) {

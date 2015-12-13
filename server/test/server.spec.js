@@ -27,6 +27,7 @@ describe('App server', function () {
   });
 
   describe('with default env options', function () {
+    var baseUrl = "http://localhost:4080";
 
     beforeEach(function () {
       server.start();
@@ -41,6 +42,38 @@ describe('App server', function () {
       server.getPort().should.equal(4080);
 
       done();
+    });
+
+    it('should return 200 when requesting /', function (done) {
+      request(baseUrl + '/', function (err, res, body) {
+        should.not.exist(err);
+        res.statusCode.should.equal(200);
+        done();
+      });
+    });
+
+    it('should return 200 when toggling existing light', function (done) {
+      request(baseUrl + '/toggle/0', function (err, res, body) {
+        should.not.exist(err);
+        res.statusCode.should.equal(200);
+        done();
+      });
+    });
+
+    it('should return 400 when toggling non-existing light', function (done) {
+      request(baseUrl + '/toggle/115', function (err, res, body) {
+        should.not.exist(err);
+        res.statusCode.should.equal(400);
+        done();
+      });
+    });
+
+    it('should return 200 when reseting existing light', function (done) {
+      request(baseUrl + '/reset', function (err, res, body) {
+        should.not.exist(err);
+        res.statusCode.should.equal(200);
+        done();
+      });
     });
 
   });
@@ -67,30 +100,6 @@ describe('App server', function () {
       server.getPort().should.equal(4081);
 
       done();
-    });
-
-    it('should return 200 when requesting /', function (done) {
-      request('http://localhost:4081/', function (err, res, body) {
-        should.not.exist(err);
-        res.statusCode.should.equal(200);
-        done();
-      });
-    });
-
-    it('should return 200 when toggling existing light', function (done) {
-      request('http://localhost:4081/toggle/0', function (err, res, body) {
-        should.not.exist(err);
-        res.statusCode.should.equal(200);
-        done();
-      });
-    });
-
-    it('should return 400 when toggling non-existing light', function (done) {
-      request('http://localhost:4081/toggle/115', function (err, res, body) {
-        should.not.exist(err);
-        res.statusCode.should.equal(400);
-        done();
-      });
     });
 
   });

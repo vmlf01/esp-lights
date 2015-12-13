@@ -52,6 +52,9 @@ function handleServerRequest(req, res) {
       // toggle light
       handleLightToggleRequest(path, req, res);
     }
+    else if (path.startsWith('/reset')) {
+      handleLightsResetRequest(path, req, res);
+    }
     else {
       // serve public files
       handlePublicFilesRequest(path, req, res);
@@ -81,6 +84,21 @@ function handleLightToggleRequest(path, req, res) {
   else {
     handleServerError({ code: 400, message: 'Please specify a light index to toggle' }, req, res);
   }
+}
+
+function handleLightsResetRequest(path, req, res) {
+  lights.reset(function (err, status) {
+    if (err) {
+      handleServerError({ code: 400, message: err.message }, req, res);
+    }
+    else {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ status: status }));
+
+        // broadcast updated status to all connected ws clients
+        broadcastLightsStatus(wsServer.clients);
+    }
+  });
 }
 
 function handlePublicFilesRequest(path, req, res) {
