@@ -1,0 +1,22 @@
+{
+  "name": "esp-lights-client",
+  "version": "1.0.0",
+  "description": "ESP8266 node.js project for controlling led lights using websockets",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "esp8266",
+    "iot",
+    "websockets",
+    "nodejs",
+    "espruino"
+  ],
+  "author": "vmlf01",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^0.8.1"
+  }
+}

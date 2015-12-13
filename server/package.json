@@ -1,0 +1,30 @@
+{
+  "name": "esp-lights-server",
+  "version": "1.0.0",
+  "description": "ESP8266 node.js project for controlling led lights using websockets",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "node app/index.js",
+    "test": "mocha",
+    "test:watch": "mocha -w"
+  },
+  "keywords": [
+    "esp8266",
+    "iot",
+    "websockets",
+    "nodejs",
+    "espruino"
+  ],
+  "author": "vmlf01",
+  "license": "MIT",
+  "dependencies": {
+    "file-server": "^1.0.5",
+    "server-destroy": "^1.0.1",
+    "ws": "^0.8.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "request": "^2.67.0"
+  }
+}
