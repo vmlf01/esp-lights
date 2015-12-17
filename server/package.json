@@ -5,8 +5,8 @@
   "main": "app/index.js",
   "scripts": {
     "start": "node app/index.js",
-    "test": "mocha",
-    "test:watch": "mocha -w"
+    "test": "mocha --recursive",
+    "test:watch": "mocha -w --recursive"
   },
   "keywords": [
     "esp8266",
@@ -20,6 +20,7 @@
   "dependencies": {
     "file-server": "^1.0.5",
     "server-destroy": "^1.0.1",
+    "winston": "^2.1.1",
     "ws": "^0.8.1"
   },
   "devDependencies": {
