@@ -5,7 +5,9 @@
   "main": "app/index.js",
   "scripts": {
     "start": "node app/index.js",
+    "pretest": "jshint .",
     "test": "mocha --recursive",
+    "pretest:watch": "jshint .",
     "test:watch": "mocha -w --recursive"
   },
   "keywords": [
@@ -26,6 +28,7 @@
   "devDependencies": {
     "chai": "^3.4.1",
     "chai-things": "^0.2.0",
+    "jshint": "^2.8.0",
     "mocha": "^2.3.4",
     "request": "^2.67.0"
   }

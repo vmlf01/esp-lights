@@ -1,8 +1,12 @@
+'use strict';
+
 var winston = require('winston');
 var fs = require('fs');
 
 (function ensureLogsDirExists() {
-  fs.existsSync("./logs") || fs.mkdirSync("./logs");
+  if (!fs.existsSync('./logs')) {
+    fs.mkdirSync('./logs');
+  }
 }());
 
 var logger = new (winston.Logger)({

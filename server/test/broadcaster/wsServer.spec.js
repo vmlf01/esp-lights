@@ -1,6 +1,6 @@
 'use strict';
 
-var chai = require("chai");
+var chai = require('chai');
 var should = chai.should();
 chai.use(require('chai-things'));
 
@@ -49,7 +49,7 @@ describe('wsServer', function () {
     it('should start a websocket server', function (done) {
       wsServer.start.should.not.throw();
 
-      var client = ws.connect('ws://localhost:' + testPort, done);
+      ws.connect('ws://localhost:' + testPort, done);
     });
 
     it('should emit connection event when a client connects', function (done) {
@@ -58,8 +58,9 @@ describe('wsServer', function () {
         ws.should.be.an('object');
 
         done();
-      })
-      var client = ws.connect('ws://localhost:' + testPort);
+      });
+
+      ws.connect('ws://localhost:' + testPort);
     });
 
   });

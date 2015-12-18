@@ -1,6 +1,6 @@
 'use strict';
 
-var chai = require("chai");
+var chai = require('chai');
 var should = chai.should();
 chai.use(require('chai-things'));
 
@@ -90,7 +90,7 @@ describe('Lights', function () {
 
     it('should return error when toggle light index does not exist', function (done) {
       game.toggle(10, function (err, status) {
-        err.should.exist;
+        should.exist(err);
 
         done();
       });
@@ -135,7 +135,7 @@ describe('Lights', function () {
 
     it('should return error when light index does not exist', function (done) {
       game.getLights(10, function (err, status) {
-        err.should.exist;
+        should.exist(err);
 
         done();
       });

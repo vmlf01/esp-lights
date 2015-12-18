@@ -3,8 +3,6 @@
 var util = require('util');
 var events = require('events');
 
-var Light = require('./light');
-
 function GameLights(lights) {
   events.EventEmitter.call(this);
 

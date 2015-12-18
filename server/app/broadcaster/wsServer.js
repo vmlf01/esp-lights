@@ -3,16 +3,15 @@
 var util = require('util');
 var EventEmitter = require('events');
 var ws = require('ws');
-var url = require('url');
 
 var logger = require('../logger');
 
-function Broadcaster(appServer) {
+function Broadcaster(_appServer) {
 
   EventEmitter.call(this);
 
   var self = this;
-  var appServer = appServer;
+  var appServer = _appServer;
   var wsServer = null;
 
   this.start = function () {
@@ -22,7 +21,7 @@ function Broadcaster(appServer) {
 
     wsServer = new ws.Server({server: appServer});
     wsServer.on('connection', handleWebsocketConnection);
-  }
+  };
 
   this.stop = function () {
     if (wsServer !== null) {
@@ -30,19 +29,19 @@ function Broadcaster(appServer) {
       wsServer.close();
       wsServer = null;
     }
-  }
+  };
 
   this.broadcastStatus = function (status) {
     if (wsServer !== null) {
       broadcastLightsStatus(wsServer.wsClients, status);
     }
-  }
+  };
 
   this.broadcastStatusToClient = function (client, status) {
     if (wsServer !== null) {
       broadcastLightsStatus([client], status);
     }
-  }
+  };
 
   function handleWebsocketConnection(ws) {
     try {
