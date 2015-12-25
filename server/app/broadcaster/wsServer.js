@@ -33,7 +33,7 @@ function Broadcaster(_appServer) {
 
   this.broadcastStatus = function (status) {
     if (wsServer !== null) {
-      broadcastLightsStatus(wsServer.wsClients, status);
+      broadcastLightsStatus(wsServer.clients, status);
     }
   };
 
@@ -55,7 +55,7 @@ function Broadcaster(_appServer) {
 
   function broadcastLightsStatus(wsClients, status) {
 
-    var msg = { type: 'status', status: status };
+    var msg = { type: 'status', lights: status };
 
     wsClients.forEach(function (ws) {
       ws.send(JSON.stringify(msg), function (err) {
@@ -64,6 +64,7 @@ function Broadcaster(_appServer) {
         }
       });
     });
+
   }
 }
 
