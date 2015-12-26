@@ -18,7 +18,10 @@ function GameLights(lights) {
   };
 
   this.toggle = function (lightIndex, cb) {
-    if (isValidIndex(lightIndex)) {
+    if (this.isFinished()) {
+      return cb && cb(new Error('Game is already finished'), gameLights);
+    }
+    else if (isValidIndex(lightIndex)) {
       gameLights[lightIndex].isOn = !gameLights[lightIndex].isOn;
       this.emit('change', gameLights);
       return cb && cb(null, gameLights);
@@ -40,6 +43,25 @@ function GameLights(lights) {
       return cb(new Error('Invalid light index => ' + lightIndex), gameLights);
     }
   };
+
+  this.isFinished = function () {
+    var isFinished = areAllLightsOn() || areAllLightsOff();
+    return isFinished;
+  };
+
+  function areAllLightsOn () {
+    return areAllLights(true);
+  }
+
+  function areAllLightsOff () {
+    return areAllLights(false);
+  }
+
+  function areAllLights (isOn) {
+    return gameLights.every(function (light) {
+      return light.isOn === isOn;
+    });
+  }
 
   function randomizeLightStatus () {
     gameLights.forEach(function (light) {

@@ -6,12 +6,12 @@ function App(game, broadcaster) {
   broadcaster.on('connection', handleNewClientConnection);
 
   function handleGameStatusChange (lights) {
-    broadcaster.broadcastStatus(lights);
+    broadcaster.broadcastStatus(game.isFinished(), lights);
   }
 
   function handleNewClientConnection (client) {
     game.getLights(function (err, lights) {
-      broadcaster.broadcastStatusToClient(client, lights);
+      broadcaster.broadcastStatusToClient(client, game.isFinished(), lights);
     });
   }
 

@@ -105,6 +105,7 @@ describe('wsServer', function () {
     var testLights;
     var connectionCount;
     var clients;
+    var isFinished = false;
 
     var initTestLights = function () {
       testLights = [
@@ -150,7 +151,7 @@ describe('wsServer', function () {
 
     it('should broadcast lights status update message', function (done) {
       var broadcastTestStatus = function () {
-        wsServer.broadcastStatus(testLights);
+        wsServer.broadcastStatus(isFinished, testLights);
       };
 
       var messagesReceived = 0;
@@ -172,7 +173,7 @@ describe('wsServer', function () {
     it('should broadcast status to all connected clients', function (done) {
 
       var broadcastTestStatus = function () {
-        wsServer.broadcastStatus(testLights);
+        wsServer.broadcastStatus(isFinished, testLights);
       };
 
       var messagesReceived = 0;

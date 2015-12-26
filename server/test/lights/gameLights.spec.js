@@ -23,7 +23,7 @@ describe('Lights', function () {
   });
 
   it('should have all public inteface methods', function (done) {
-    var publicMethods = ['init', 'toggle', 'getLights'];
+    var publicMethods = ['init', 'toggle', 'getLights', 'isFinished'];
 
     publicMethods.should.all.satisfy(function (f) {
       return game.should.respondTo(f);
@@ -69,6 +69,13 @@ describe('Lights', function () {
       game.init();
     });
 
+    it('should start with game not finished', function (done) {
+      game.init();
+      game.isFinished().should.equal(false);
+
+      done();
+    });
+
   });
 
   describe('toggle', function () {
@@ -79,11 +86,7 @@ describe('Lights', function () {
         game.toggle(1, function (err, status) {
           status[1].isOn.should.not.be.equal(initialStatus);
 
-          game.toggle(1, function (err, status) {
-            status[1].isOn.should.be.equal(initialStatus);
-
-            done();
-          });
+          done();
         });
       });
     });
@@ -110,6 +113,12 @@ describe('Lights', function () {
       });
 
       game.toggle(1);
+    });
+
+    it('should end game when all lights status are the same', function (done) {
+
+
+      done();
     });
 
   });

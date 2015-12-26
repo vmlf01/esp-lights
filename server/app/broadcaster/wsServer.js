@@ -31,15 +31,15 @@ function Broadcaster(appServer) {
     }
   };
 
-  this.broadcastStatus = function (status) {
+  this.broadcastStatus = function (isFinished, status) {
     if (wsServer !== null) {
-      broadcastLightsStatus(wsServer.clients, status);
+      broadcastLightsStatus(wsServer.clients, isFinished, status);
     }
   };
 
-  this.broadcastStatusToClient = function (client, status) {
+  this.broadcastStatusToClient = function (client, isFinished, status) {
     if (wsServer !== null) {
-      broadcastLightsStatus([client], status);
+      broadcastLightsStatus([client], isFinished, status);
     }
   };
 
@@ -53,9 +53,9 @@ function Broadcaster(appServer) {
     }
   }
 
-  function broadcastLightsStatus(wsClients, status) {
+  function broadcastLightsStatus(wsClients, isFinished, status) {
 
-    var msg = { type: 'status', lights: status };
+    var msg = { type: 'status', isFinished: isFinished, lights: status };
 
     logger.info('Sending game status message', msg);
 

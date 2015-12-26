@@ -2,6 +2,7 @@
 (function () {
   var isConnectionOpen = false;
   var wsConnection = null;
+  var isGameInProgress = false;
 
   $(document).ready(function () {
 
@@ -27,7 +28,7 @@
   }
 
   function handleLightClick (light) {
-    if (isConnectionOpen) {
+    if (isGameInProgress) {
       var lightElem = $(light.currentTarget);
       var lightIndex = lightElem[0].id.slice(-1);
       console.log('CLICK LIGHT!', lightIndex);
@@ -56,8 +57,10 @@
   function handleIncomingMessage (msg) {
     var data = JSON.parse(msg.data);
     console.log('incoming message', data);
-    if (data.type === 'status' && data.lights) {
+    if (data.type === 'status') {
+      isGameInProgress = !data.isFinished;
       updateLightsDisplay(data.lights);
+      updateConnectionDisplay();
     }
   }
 
@@ -68,7 +71,12 @@
 
   function updateConnectionDisplay () {
     if (isConnectionOpen) {
-      updateGameTitle('Go!');
+      if (isGameInProgress) {
+        updateGameTitle('Go!');
+      }
+      else {
+        updateGameTitle('Game finished!');
+      }
     }
     else {
       updateGameTitle('Hold on, lost connection!!!');
@@ -90,6 +98,8 @@
   }
 
   function sendResetRequest() {
+    isGameInProgress = false;
+    updateGameTitle();
     $.get('reset');
   }
 

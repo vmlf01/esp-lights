@@ -27,6 +27,10 @@ describe('app', function () {
 
       getLights: function (cb) {
         cb(null, []);
+      },
+
+      isFinished: function () {
+        return false;
       }
 
     };
