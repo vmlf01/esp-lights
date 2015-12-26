@@ -37,7 +37,11 @@
   }
 
   function createWebSocketConnection() {
-    var connectionString = 'ws://' + location.host + '/';
+    var protocol = 'ws:';
+    if (location.protocol === 'https:') {
+      protocol = 'wss:'
+    }
+    var connectionString = protocol + '//' + location.host + '/';
     console.log('Connecting to', connectionString);
 
     wsConnection = new WebSocket(connectionString);
