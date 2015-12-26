@@ -9,9 +9,12 @@ var App = require('./app');
 var numberOfLights = process.env.NUMBER_LIGHTS || 4;
 
 var lights = [];
+var light;
 
 for (var i = 0; i < numberOfLights; i++) {
-  lights.push(new Lights.Light());
+  light = new Lights.Light();
+  light.index = i;
+  lights.push(light);
 }
 
 var game = new Lights.GameLights(lights);
