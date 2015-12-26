@@ -10,19 +10,34 @@ var Broadcaster = require('../../app/broadcaster');
 var lights = require('../../app/lights');
 
 var wsServer;
-var appServer;
+var appServerMock;
 var testPort = process.env.PORT || 54321;
 
 describe('wsServer', function () {
   beforeEach(function () {
-    appServer = http.createServer();
-    appServer.listen(54321);
-    wsServer = new Broadcaster(appServer);
+    var httpServer = http.createServer();
+
+    appServerMock = {
+      getHttpServer: function () {
+        return httpServer;
+      },
+
+      start: function () {
+        httpServer.listen(testPort);
+      },
+
+      stop: function () {
+        httpServer.close();
+      }
+    };
+
+    wsServer = new Broadcaster(appServerMock);
+    appServerMock.start();
   });
 
   afterEach(function () {
     wsServer.stop();
-    appServer.close();
+    appServerMock.stop();
   });
 
   describe('module.exports', function () {

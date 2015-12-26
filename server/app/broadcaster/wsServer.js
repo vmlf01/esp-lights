@@ -6,12 +6,12 @@ var ws = require('ws');
 
 var logger = require('../logger');
 
-function Broadcaster(_appServer) {
+function Broadcaster(appServer) {
 
   EventEmitter.call(this);
 
   var self = this;
-  var appServer = _appServer;
+  var httpServer = appServer.getHttpServer();
   var wsServer = null;
 
   this.start = function () {
@@ -19,7 +19,7 @@ function Broadcaster(_appServer) {
       self.stop();
     }
 
-    wsServer = new ws.Server({server: appServer});
+    wsServer = new ws.Server({server: httpServer});
     wsServer.on('connection', handleWebsocketConnection);
   };
 

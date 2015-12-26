@@ -42,7 +42,7 @@ describe('App server', function () {
     });
 
     it('should have all public inteface methods', function (done) {
-      var publicMethods = ['start', 'stop', 'getPort'];
+      var publicMethods = ['start', 'stop', 'getPort', 'getHttpServer'];
 
       publicMethods.should.all.satisfy(function (f) {
         return appServer.should.respondTo(f);

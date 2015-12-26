@@ -37,6 +37,10 @@ function AppServer(gameLights) {
     return port;
   };
 
+  this.getHttpServer = function () {
+    return appServer;
+  };
+
   function parsePortSetting() {
     port = Number(process.env.PORT) || 4080;
   }
@@ -72,6 +76,8 @@ function AppServer(gameLights) {
   function handleLightToggleRequest(path, req, res) {
     var lightIndex = path.substring(8);
     if (lightIndex.length > 0) {
+      logger.info('Toggling game light', lightIndex);
+
       gameLights.toggle(Number(lightIndex), function (err, status) {
         if (err) {
           handleServerError({ code: 400, message: err.message }, req, res);
@@ -88,6 +94,8 @@ function AppServer(gameLights) {
   }
 
   function handleLightsResetRequest(path, req, res) {
+    logger.info('Reseting game lights');
+
     gameLights.reset(function (err, status) {
       if (err) {
         handleServerError({ code: 400, message: err.message }, req, res);
