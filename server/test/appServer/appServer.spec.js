@@ -18,7 +18,7 @@ var gameLightsMock = {
     }
   },
 
-  reset: function (cb) {
+  init: function (cb) {
     cb();
   }
 };

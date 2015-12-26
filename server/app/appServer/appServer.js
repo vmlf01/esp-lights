@@ -96,7 +96,7 @@ function AppServer(gameLights) {
   function handleLightsResetRequest(path, req, res) {
     logger.info('Reseting game lights');
 
-    gameLights.reset(function (err, status) {
+    gameLights.init(function (err, status) {
       if (err) {
         handleServerError({ code: 400, message: err.message }, req, res);
       }
