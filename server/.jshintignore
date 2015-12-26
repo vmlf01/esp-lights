@@ -2,3 +2,4 @@ node_modules/
 coverage/
 app-old/
 test-old/
+public/
