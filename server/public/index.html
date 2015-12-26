@@ -1,7 +1,98 @@
-<!doctype html>
-<html>
-  <head></head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ESP Lights</title>
+
+    <meta name="description" content="Espruino for ESP8266 demo">
+    <meta name="author" content="vmlf01">
+
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
   <body>
-    <h1>ESP Lights</h1>
+
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">ESP Lights</a>
+			</div>
+			
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="play.html">New Game</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="http://www.github.com/vmlf01/esp-lights/">See on GitHub</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="jumbotron">
+					<h2>
+						Hello, world!
+					</h2>
+					<p>
+						This is a demo game to try out JavaScript capabilities on the new Espruino build for ESP8266.
+					</p>
+					<p>
+						The objective of the game is to turn ON or turn OFF all the lights, so choose your side and get ready!
+					</p>
+					<p>
+						<a class="btn btn-success btn-large" href="play.html">Start Playing</a>
+					</p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="row">
+					<a href="http://espressif.com/" class="thumbnail">
+						<div class="pull-left">
+							<img class="img-circle" alt="Espressif" src="images/espressif_logo.png">
+						</div>
+						<div>
+							<h1>Espressif</h1>
+							<p>http://espressif.com</p>
+						</div>
+					</a>
+				</div>
+				<div class="row">
+					<a href="http://www.espruino.com/" class="thumbnail">
+						<div class="pull-left">
+							<img class="img-circle" alt="Espruino" src="images/espruino_logo.png">
+						</div>
+						<div>
+							<h1>Espruino</h1>
+							<p>http://www.espruino.com</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer class="footer">
+		<div class="container text-center">
+			<h3>Follow me on <a href="http://vmlf01.github.io/">Bits and Pieces</a></h3>
+			<p class="text-muted">Code licensed <a href="https://github.com/vmlf01/esp-lights/blob/master/LICENSE">MIT</a>.</p>
+		</div>
+    </footer>	
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
   </body>
 </html>
