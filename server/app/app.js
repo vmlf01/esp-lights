@@ -10,7 +10,7 @@ function App(game, broadcaster) {
   }
 
   function handleNewClientConnection (client) {
-    game.getLights(function (lights) {
+    game.getLights(function (err, lights) {
       broadcaster.broadcastStatusToClient(client, lights);
     });
   }
