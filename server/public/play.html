@@ -42,14 +42,14 @@
 	<div class="container">
 		<div class="row">
 			<div class="jumbotron">
-				<div class="row">
-					<h1 class="text-center">
+				<div class="row" id="gamePanel">
+					<h1 class="text-center" id="gameTitle">
 						Go!
 					</h1>
 					<a href="#" id="light0" class="light col-xs-3 text-center">
 						<img src="images/espressif_logo.png" />
 					</a>
-					<a href="#" id="light1" class="light on col-xs-3 text-center">
+					<a href="#" id="light1" class="light col-xs-3 text-center">
 						<img src="images/espressif_logo.png" />
 					</a>
 					<a href="#" id="light2" class="light col-xs-3 text-center">
@@ -73,5 +73,9 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
+
+    <script>
+      joinGame();
+    </script>
   </body>
 </html>
