@@ -57,6 +57,8 @@ function Broadcaster(appServer) {
 
     var msg = { type: 'status', lights: status };
 
+    logger.info('Sending game status message', msg);
+
     wsClients.forEach(function (ws) {
       ws.send(JSON.stringify(msg), function (err) {
         if (err) {
